@@ -26,6 +26,12 @@ var foodY;
 var skor = 0;
 var gameOver = false;
 
+// ...
+
+let touchStartX = 0;
+let touchStartY = 0;
+
+
 window.onload = function () {
     board = document.getElementById("board");
     board.height = total_row * blockSize;
@@ -44,18 +50,58 @@ window.onload = function () {
     setInterval(update, 2000 /  10);
 }
 
-    function startGame() {
-        snakeX = blockSize * 5;
-        snakeY = blockSize * 5;
-        speedX = 0;
-        speedY = 0;
-        skor = 0;
-        
-        snakeBody = [];
-        gameOver = false;   
-        placeFood();
-        setInterval(2000 / 10);
+document.addEventListener("keyup", changeDirection);
+document.addEventListener("touchstart", handleTouchStart);
+document.addEventListener("touchmove", handleTouchMove);
+
+function handleTouchStart(event) {
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+}
+
+function handleTouchMove(event) {
+    if (!touchStartX || !touchStartY) return;
+
+    const touchEndX = event.touches[0].clientX;
+    const touchEndY = event.touches[0].clientY;
+
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        if (deltaX > 0 && speedX !== -1) {
+            speedX = 1;
+            speedY = 0;
+        } else if (deltaX < 0 && speedX !== 1) {
+            speedX = -1;
+            speedY = 0;
+        }
+    } else {
+        if (deltaY > 0 && speedY !== -1) {
+            speedX = 0;
+            speedY = 1;
+        } else if (deltaY < 0 && speedY !== 1) {
+            speedX = 0;
+            speedY = -1;
+        }
     }
+    touchStartX = 0;
+    touchStartY = 0;
+}
+
+
+function startGame() {
+    snakeX = blockSize * 5;
+    snakeY = blockSize * 5;
+    speedX = 0;
+    speedY = 0;
+    skor = 0;
+    
+    snakeBody = [];
+    gameOver = false;   
+    placeFood();
+    setInterval(2000 / 10);
+}
 
 function update() {
     if (gameOver) {
