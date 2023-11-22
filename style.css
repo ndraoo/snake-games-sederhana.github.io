@@ -1,0 +1,63 @@
+body {
+    background-color: #222;
+    color: #eee;
+    font-family: Arial, sans-serif;
+}
+
+.row {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #333;
+    border: 2px solid #444;
+    
+}
+
+h1 {
+    font-size: 36px;
+    text-align: center;
+    color: #fff;
+}
+
+.id {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+h6 {
+    font-size: 18px;
+    color: #fff;
+    margin: 0;
+}
+
+.skor {
+    margin-top: 10px;
+    font-size: 24px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.phyton { 
+    
+    background-color: #444;
+    border: 2px solid #666;
+    padding: 1px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+canvas {
+    background-color: #000;
+    border: 2px solid #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
